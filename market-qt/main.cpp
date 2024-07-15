@@ -1,24 +1,14 @@
-// Copyright (C) 2020 The Qt Company Ltd.
+// Copyright (C) 2016 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
-#include <QGuiApplication>
-#include <QQmlApplicationEngine>
-#include <QQuickStyle>
+#include <QApplication>
+
+#include "calculator.h"
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication::setOrganizationName("QtProject");
-    QCoreApplication::setApplicationName("Calqlatr");
-
-    QGuiApplication app(argc, argv);
-
-    QQuickStyle::setStyle("Basic");
-
-    QQmlApplicationEngine engine;
-    QObject::connect(&engine, &QQmlApplicationEngine::objectCreationFailed,
-            &app, []() { QCoreApplication::exit(-1); },
-            Qt::QueuedConnection);
-    engine.loadFromModule("demos.calqlatr", "Main");
-
+    QApplication app(argc, argv);
+    Calculator calc;
+    calc.show();
     return app.exec();
 }
