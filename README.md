@@ -5,4 +5,4 @@
 > cmake --build build --config Release
 ```
 
-Note that `CMAKE_PREFIX_PATH` is only necessary if you manage your Qt installation yourself.
+Note that `CMAKE_PREFIX_PATH` is only necessary if you manage your Qt installation yourself. Your Qt `bin` directory should also be in your PATH.
