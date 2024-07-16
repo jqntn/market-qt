@@ -1,17 +1,33 @@
-# Copyright (C) 2022 The Qt Company Ltd.
-# SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
+cmake_minimum_required(VERSION 3.15)
 
-cmake_minimum_required(VERSION 3.16)
 project(calculator LANGUAGES CXX)
 
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets)
+set(QT_STATIC ON)
+if (QT_STATIC)
+    include(FetchContent)
+
+    set(QT_VERSION_MAJOR 6)
+    set(QT_VERSION_MINOR 7)
+    set(QT_VERSION_PATCH 2)
+
+    set(CMAKE_PROJECT_NAME "QtBase")
+    set(CMAKE_AUTOMOC_EXECUTABLE "${CMAKE_BINARY_DIR}/bin/moc${CMAKE_EXECUTABLE_SUFFIX}")
+    set(CMAKE_AUTOUIC_EXECUTABLE "${CMAKE_BINARY_DIR}/bin/uic${CMAKE_EXECUTABLE_SUFFIX}")
+
+    set(FETCHCONTENT_QUIET OFF)
+
+    FetchContent_Declare(qtbase URL https://github.com/qt/qtbase/archive/refs/tags/v${QT_VERSION_MAJOR}.${QT_VERSION_MINOR}.${QT_VERSION_PATCH}.tar.gz)
+    FetchContent_MakeAvailable(qtbase)
+else()
+    find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets)
+endif()
 
 qt_standard_project_setup()
 
 qt_add_executable(calculator
-    button.cpp button.h
-    calculator.cpp calculator.h
     main.cpp
+    calculator.cpp
+    button.cpp
 )
 
 set_target_properties(calculator PROPERTIES
@@ -24,16 +40,3 @@ target_link_libraries(calculator PRIVATE
     Qt6::Gui
     Qt6::Widgets
 )
-
-install(TARGETS calculator
-    BUNDLE  DESTINATION .
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-)
-
-qt_generate_deploy_app_script(
-    TARGET calculator
-    OUTPUT_SCRIPT deploy_script
-    NO_UNSUPPORTED_PLATFORM_ERROR
-)
-install(SCRIPT ${deploy_script})
