@@ -2,63 +2,6 @@
     "version": 3,
     "configurePresets": [
         {
-            "name": "windows-base-custom-qt",
-            "hidden": true,
-            "generator": "Ninja",
-            "binaryDir": "${sourceDir}/out/build/${presetName}",
-            "installDir": "${sourceDir}/out/install/${presetName}",
-            "cacheVariables": {
-                "CMAKE_C_COMPILER": "cl.exe",
-                "CMAKE_CXX_COMPILER": "cl.exe",
-                "CMAKE_PREFIX_PATH": "C:/Qt/6.7.2/msvc2019_64"
-            },
-            "condition": {
-                "type": "equals",
-                "lhs": "${hostSystemName}",
-                "rhs": "Windows"
-            }
-        },
-        {
-            "name": "x64-debug-custom-qt",
-            "displayName": "x64 Debug (Custom Qt)",
-            "inherits": "windows-base-custom-qt",
-            "architecture": {
-                "value": "x64",
-                "strategy": "external"
-            },
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug"
-            }
-        },
-        {
-            "name": "x64-release-custom-qt",
-            "displayName": "x64 Release (Custom Qt)",
-            "inherits": "x64-debug-custom-qt",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Release"
-            }
-        },
-        {
-            "name": "x86-debug-custom-qt",
-            "displayName": "x86 Debug (Custom Qt)",
-            "inherits": "windows-base-custom-qt",
-            "architecture": {
-                "value": "x86",
-                "strategy": "external"
-            },
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug"
-            }
-        },
-        {
-            "name": "x86-release-custom-qt",
-            "displayName": "x86 Release (Custom Qt)",
-            "inherits": "x86-debug-custom-qt",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Release"
-            }
-        },
-        {
             "name": "windows-base",
             "hidden": true,
             "generator": "Ninja",
