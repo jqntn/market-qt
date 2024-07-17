@@ -26,7 +26,7 @@ endif()
 
 qt_standard_project_setup()
 
-file(GLOB_RECURSE src "src/*.cpp" "include/*.h")
+file(GLOB_RECURSE src "src/*.cpp" "include/*.hpp")
 qt_add_executable(market-qt "${src}")
 
 target_include_directories(market-qt PRIVATE
