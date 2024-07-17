@@ -37,6 +37,19 @@ target_link_libraries(market-qt PRIVATE
   Qt6::Gui
   Qt6::Widgets)
 
+if(QT_STATIC)
+  target_link_libraries(market-qt PRIVATE
+    "${CMAKE_BINARY_DIR}/plugins/platforms/qwindows.lib"
+    imm32.lib
+    d3d9.lib
+    shcore.lib
+    shlwapi.lib
+    setupapi.lib
+    wtsapi32.lib)
+
+  target_compile_definitions(market-qt PRIVATE QT_STATIC)
+endif()
+
 set_target_properties(market-qt PROPERTIES
   WIN32_EXECUTABLE ON
   MACOSX_BUNDLE ON)

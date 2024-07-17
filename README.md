@@ -7,4 +7,4 @@
 
 Note that your Qt `bin` directory must be in your PATH.
 
-The `QT_STATIC` flag is experimental and should only be used for distribution or if Qt is not installed on your machine.
+The `QT_STATIC` windows-only flag is experimental and should only be used for distribution or if Qt is not installed on your machine.
